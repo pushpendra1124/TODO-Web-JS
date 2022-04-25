@@ -235,7 +235,7 @@ button{
     position: relative;
     top: 2px;
     margin-left: 80vw;
-    color: rgb(225, 240, 15);
+    color: red;
     font-size: 18px;
     font-weight: 800;
 }
