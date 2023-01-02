@@ -1,142 +1,134 @@
-var arr_of_obj = new Set();
-var value_id;
-var title_flag = false;
-var subtask = new Map;
-function modal(){
-    document.getElementById("modal-div").style.display = "block";
-};
-function addCard(){
-    var card_title = document.getElementById("modal-input-box").value;
-    createObj(card_title);
-    closeModal();
-}
-function closeModal(){
-    document.getElementById("modal-div").style.display = "none";
-}
-function createObj(title){
-    document.getElementById('empty-list').style.display = 'none'
-    var card_obj = {
-        title: title,
-        id: Date.now(),
-        subtask
-    };
-    arr_of_obj.add(card_obj);
-    createCard(card_obj.id);
-};
-function addList(){
-    var cloned_list_item = document.querySelector(".this-list-element").cloneNode(true);
-    var card_item = document.getElementById('modal-input-box-card').value;
-    console.log(value_id);
-    cloned_list_item.innerText =  card_item; 
-    cloned_list_item.style.display = "block";
-    cloned_list_item.setAttribute('id',`${Date.now()}`);
-    cloned_list_item.setAttribute('value',`${Date.now()}`);
-    cloned_list_item.setAttribute('style',"margin-left: 10px;");
-    var done_button = document.createElement('button');
-    done_button.setAttribute('id',`check-done-${Date.now()}`);
-    done_button.setAttribute('class','mark-as-done-class');
-    done_button.setAttribute('value',`${Date.now()}`);
-    done_button.setAttribute('onclick','completedTask(this.value)');
-    done_button.innerText = ' Mark Done';
-    done_button.setAttribute('style','font-size:15 px;cursor:pointer; height:18px; border-radius:10px;')
-    cloned_list_item.appendChild(done_button);
-    cloned_list_item.setAttribute('onClick',"completedTask(this.value)");
-     for(obj of arr_of_obj){
-        for(prop in obj){
-            if(obj.id == value_id){
-                obj.subtask.set(`${card_item}`,`${Date.now()}`);
-                break;
-            }
-        }
+const addList = document.getElementById("addList");
+const popup = document.querySelector(".popup-wrap");
+addList.addEventListener("click", () => {
+  const popupbox = document.createElement("div");
+  const popHeading = document.createElement("p");
+  const popInput = document.createElement("input");
+  const addBtn = document.createElement("div");
+  const closeBtn = document.createElement("div");
+  document.querySelector(".container").classList.add("blur");
+  popup.appendChild(popupbox);
+  popupbox.className = "popup-box";
+  popHeading.innerText = "Add new List";
+  popInput.type = "text";
+  popInput.placeholder = "Add new list here";
+  addBtn.className = "popup-box-button";
+  closeBtn.className = "popup-box-button";
+  addBtn.innerText = "Add";
+  const warning=document.createElement("p");
+  warning.innerText="Enter valid list name!!!";
+  warning.style.display="none";
+  closeBtn.innerText = "Close";
+  popupbox.appendChild(popHeading);
+  popupbox.appendChild(popInput);
+  popupbox.appendChild(addBtn);
+  popupbox.appendChild(closeBtn);
+  popupbox.appendChild(warning);
+  addBtn.addEventListener("click", () => {
+    if (popInput.value=== "") {
+        warning.style.fontSize="0.7rem"
+        warning.style.display="block";
     }
-    document.getElementById(`${value_id}`).getElementsByClassName('add-list-after-this')[0].appendChild(cloned_list_item).appendChild(done_button);
-    closeCardModal();
-}
-function closeCardModal(){
-    document.getElementById('modal-div-card').style.display = "none";
-}
-function addSubtask(val) {
-    document.getElementById("modal-div-card").style.display = "block";
-    value_id = val;
-};
-function deleteCard(val){
-    var delete_div = document.getElementById(`${val}`);
-    for(obj of arr_of_obj){
-        for(prop in obj){
-        if (obj.id==val)
-        arr_of_obj.delete(obj);
-        break;
-        }
-    }
-    delete_div.parentNode.removeChild(delete_div);
-    if(arr_of_obj.size==0){
-        document.getElementById('empty-list').style.display = 'block';
-    }
-    
-};
+    else{
+      document.getElementById("intro-text").style.display="none";
+      const box = document.createElement("div");
+      const boxHeading = document.createElement("span");
+      const add = document.createElement("i");
+      const deleteBtn = document.createElement("i");
+      const btnContainer = document.createElement("div");
+      btnContainer.className = "button-container";
+      add.className = "fa-solid fa-circle-plus";
+      deleteBtn.className = "fa-solid fa-trash-can";
+      boxHeading.id="box-heading";
+      box.className = "box";
+      const container2=document.querySelector(".container-2");
+      container2.appendChild(box);
+      box.appendChild(boxHeading);
+      box.appendChild(btnContainer);
+      btnContainer.appendChild(add);
+      btnContainer.appendChild(deleteBtn);
+      boxHeading.innerText = popInput.value;
+      boxHeading.addEventListener('click',()=>{
+        const heading=document.getElementById("heading");
+        heading.innerText=boxHeading.innerText;
+        const container=document.querySelector(".container");
+        const container3=document.querySelector(".container-3");
+        container.style.visibility="hidden";
+        container3.style.visibility="visible";
+        const backBtn=document.getElementById("backbtn");
+        container3.appendChild(box);
+        deleteBtn.addEventListener('click',()=>{
+          document.querySelector(".container-3").removeChild(box);
+          document.querySelector(".container").style.visibility="visible";
+        document.querySelector(".container-3").style.visibility="hidden";
 
-function createCard(){
-    var first_card = document.querySelector('.card').cloneNode(true);
-    display(first_card);
-};
-function completedTask(value){
-    document.getElementById(`${value}`).style.textDecoration = 'line-through';
-    document.getElementById(`${value}`).style.color = '#112D4E';
-    document.getElementById(`check-done-${value}`).remove();
-}
-function display(card){
-    document.getElementById('empty-list').style.display = 'none'
-    arr_of_obj.forEach(element => {
-        card.id = element.id;
-        card.querySelector(".card-head").innerHTML = element.title;
-        card.querySelector(".card-head").setAttribute('value',`${element.id}`);
-        card.setAttribute("value",`${element.id}`);
-        card.setAttribute("display","block");
-        card.setAttribute("min-height","300px");
-        card.querySelector(".delete-button-in-card").setAttribute("value",`${element.id}`);
-        card.querySelector(".delete-button-in-card").setAttribute("onClick","deleteCard(this.value)");
-        card.querySelector(".add-button-in-card").setAttribute("value",`${element.id}`);
-        card.querySelector(".add-button-in-card").setAttribute("onClick","addSubtask(this.value)");    
-    });
-    if(title_flag)
-    card.style.display = 'none';
-    else
-    card.style.display = "block";
-    document.getElementById("outer-container").appendChild(card);
-}
-function headerFunc(val){
-    var card_header;
-    for(let ele of arr_of_obj){
-        for(let id in ele){
-            if(ele[id]==val){
-                card_header = ele.title;
-                break;
-            };
-        };
-    };
-    document.querySelector("#app-name").style.display = 'none';
-    document.querySelector("#add-button-text").style.display = 'none';
-    for(let ele of arr_of_obj){
-            if(ele.id==val){
-                document.getElementById(`${ele.id}`).style.display = 'block';
-            }
-            else {
-                document.getElementById(`${ele.id}`).style.display = 'none';
-            }
-    };
-    document.getElementById('card-dynamic-head').innerText = `${card_header}`;
-    document.getElementById('card-dynamic-head').style.display = 'flex'
-    document.getElementById('back-button').style.display = 'block'
-    title_flag = true;
-};
-function displayAll(){
-    title_flag = false;
-    document.querySelector("#app-name").style.display = 'block';
-    document.querySelector("#add-button-text").style.display = 'inline-block';
-    document.getElementById('back-button').style.display = 'none';
-    for(let ele of arr_of_obj){
-            document.getElementById(`${ele.id}`).style.display = 'block';
-    };
-    document.getElementById('card-dynamic-head').innerText = ``;
-    document.getElementById('card-dynamic-head').style.display = 'none';
-}
+        })
+        backBtn.addEventListener('click',()=>{
+          container3.removeChild(box);
+          container2.appendChild(box);
+          document.querySelector(".container").style.visibility="visible";
+          document.querySelector(".container-3").style.visibility="hidden";
+        })
+      })
+      boxHeading.style.borderBottom = "1px solid black";
+      popup.removeChild(popupbox);
+      document.querySelector(".container").classList.remove("blur");
+      deleteBtn.addEventListener("click", () => {
+        document.querySelector(".container-2").removeChild(box);
+        if(document.querySelector(".container-2").innerText===""){
+          document.querySelector("#intro-text").style.display="block";
+        }
+      });
+      add.addEventListener("click", () => {
+        const popupbox = document.createElement("div");
+        const popHeading = document.createElement("p");
+        const popInput = document.createElement("input");
+        const addBtn = document.createElement("div");
+        const closeBtn = document.createElement("div");
+        popup.appendChild(popupbox);
+        popupbox.className = "popup-box";
+        popHeading.innerText = "Add new Task";
+        popInput.type = "text";
+        popInput.placeholder = "Add new Task here";
+        addBtn.className = "popup-box-button";
+        closeBtn.className = "popup-box-button";
+        addBtn.innerText = "Add";
+        closeBtn.innerText = "Close";
+        document.querySelector(".container").classList.add("blur");
+        popupbox.appendChild(popHeading);
+        popupbox.appendChild(popInput);
+        popupbox.appendChild(addBtn);
+        popupbox.appendChild(closeBtn);
+        addBtn.addEventListener("click", () => {
+          if (popInput.value !== "") {
+            const task = document.createElement("div");
+            const taskText = document.createElement("span");
+            const doneButton = document.createElement("button");
+            taskText.className = "task-text";
+            doneButton.className = "done-button";
+            task.className = "task";
+            taskText.innerText = popInput.value;
+            doneButton.innerText = "mark done";
+            document.querySelector(".container").classList.remove("blur");
+            box.appendChild(task);
+            task.appendChild(taskText);
+            task.appendChild(doneButton);
+            popup.removeChild(popupbox);
+            doneButton.addEventListener("click", () => {
+              taskText.style.textDecoration = "line-through";
+              task.removeChild(doneButton);
+            });
+          }
+        });
+        closeBtn.addEventListener("click", () => {
+          popup.removeChild(popupbox);
+          document.querySelector(".container").classList.remove("blur");
+        });
+      });
+    }
+  });
+  closeBtn.addEventListener("click", () => {
+    popup.removeChild(popupbox);
+    document.querySelector(".container").classList.remove("blur");
+  });
+});
