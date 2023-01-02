@@ -1,241 +1,271 @@
 *{
-    margin: 0;
-    padding: 0;
+    background-color: white(49, 203, 214);
+   
 }
-body{
-    background: #000000;
-    color: white;
-}
-#header{
-    display: flex;
-    font-size: 50px;
-    margin: 5% 0 0 10%;
-}
-#add-button{
-    z-index: 1;
-    position: absolute;
-    left: 80%;
-    cursor: pointer;
-    color:yellowgreen;
-}
-.extra{
-    z-index: 1;
-    position: absolute;
-    left: 84%;
-    cursor: pointer;
-    color: #ffffff;
-}
-
-.color-red{
-    color: red;
-}
-#modal-div{
-    display: none;
-    position: fixed;
-    padding: 20% 0 0 30%;
-    top: -10%;
-    z-index: 1;
-    color: white;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 100vw;
-    height: 100vh;
-}
-#modal-box{
-    border-radius: 7px;
-    width: 30vw;
-    height: 30vh;
-    padding: 30px 0 0px 0px;
-    text-align: center;
-    color: black;
-    background-color: #fff;
-    animation: modalPop 0.2s ease-in 0s 1;
-}
-.big-blue-text{
-    color: #eb0f0f;
-    font-size: 25px;
-}
-.blue-button{
-    border-radius: 250px;
-    margin-top: 5%;
-    color: white;
-    background-color: rgb(243, 56, 56);
-    font-size: 30px;
-    width: 25%;
-    height: 20%;
-    cursor: pointer;
-}
-button{
-    border: none;
-}
-#modal-close-button{
-    margin-left: 10%;
-}
-.modal-content{
-    margin-top: 3%;
-}
-.input-box{
-    width: 72%;
-    height: 20%;
-    text-align: center;
-    font-size: 18px;
-    border-radius: 3px;
-}
-#outer-container{
-    display: flex;
+.blur {
+    filter: blur(5px);
+  }
+  .box {
     position: relative;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    flex-direction: row;
-    justify-content: space-evenly;
-    margin-right: 10%;
-    width: 90%;
-}
-.card{
-    list-style: none;
-    display: none;
-    position: relative;
-    min-height: 350px;
-    min-width: 19%;
-    text-align: center;
+    border: 2px solid brown;
+    min-height: 300px;
+    width: 200px;
+    margin: 25px;
     border-radius: 10px;
-    margin: 3% 0 0 5%;
-    padding: 10px 0 0 0;
-    background: #EEEEEE;
-    animation: cardAnimate 0.2s ease-in 0s 1;
-}
-.card-head{
-    padding-left: 10px;
-    padding-right: 10px;
     font-size: 25px;
-    font-weight: 500;
-    color: #c91b55;
-    cursor: pointer;
-}
-.list-element{
-    margin-top: 10%;
-    margin-bottom: 10%;
-}
-.buttons-in-card{
-    display: flex;
-    font-size: 30px;
-}
-.add-button-in-card{
-    position: absolute;
-    bottom: 10px;
-    font-size: 25px;
-    margin-left: 15%;
-    right: 10px;
-    cursor: pointer;
-    color: #1e59b8;
-    background-color: #EEEEEE;
-}
-.delete-button-in-card{
-    position: absolute;
-    right: 50px;
-    bottom: 10px;
-    font-size: 25px;
-    cursor: pointer;
-    color: #fa0b0b;
-    background-color: #EEEEEE;
-}
-.in-list-button{
-    cursor: pointer;
-}
-#modal-div-card{
-    display: none;
-    position: fixed;
-    padding: 20% 0 0 30%;
     text-align: center;
-    top: -10%;
-    z-index: 1;
+    padding: 25px 10px 3.5rem;
+    font-weight: lighter;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    color: brown;
+    box-shadow: 5px 5px 10px rgb(209, 204, 204);
+  }
+  .button-container {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .button-container i {
+    padding: 0.5rem;
+  }
+  .done-button {
+    background-color: rgb(115, 115, 222);
+    border: 1px solid black;
     color: white;
-    background-color: rgba(0, 0, 0, 0.8);
-    width: 100vw;
-    height: 100vh;
-}
-#modal-box-card{
-    border-radius: 7px;
-    width: 30vw;
-    height: 28vh;
-    border: 1px solid rgb(165, 46, 46);
-    padding: 10px 0 0 0px;
-    text-align: center;
-    color: black;
-    background-color: #fff;
-    animation: modalPop 0.2s ease-in 0s 1;
-}
-.this-list-element{
+    border-radius: 0.5rem;
+  }
+  .done-button:hover {
+    background-color: rgb(81, 81, 238);
+    box-shadow: 1px 1px 5px gray;
+  }
+  hr {
+    margin-left: 35px;
+  }
+  a {
+    text-decoration: none;
+    color: brown;
+    padding: 0.5rem;
+  }
+  .completedtext {
+    color: brown;
+    text-decoration: line-through;
     font-size: 20px;
-    font-weight: 700;
-    color: #393E46;
-    animation: cardTextAnimate 0.2s ease-in 0s 1;
-}
-#check-done{
+    font-weight: 500;
+  }
+  .pending_checkbox {
     color: black;
-    background-color: grey;
-    display: none;
-}
-.mark-as-done-class{
-    background-color: #4883e2;
-    color: #EEEEEE;
-    font-size: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 3px 4px 4px 4px;
-}
-#back-button{
-    margin-left: 10%;
-   font-size: 40px;
-   display: none;
-}
-#back-icon{
-    z-index: 20;
-    font-size: 40px;   
-    color: red;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  .container-2 {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 75vw;
+    margin: auto;
+    position: relative;
+    right: 350px;
+  }
+  .container-1 {
+    display: flex;
+    grid-template-columns: auto auto;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 65vw;
+    margin: auto;
+    margin-top: 150px;
+    margin-left: 100px;
+  }
+  .container{
+    position: relative;
+    bottom: 100px;
+  }
+  .text1 {
+    display: inline-block;
+    font-size: 60px;
+    font-weight: lighter;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  .text2 {
+    display: inline-block;
+    text-align: right;
+    font-size: 40px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-weight: lighter;
+    padding: 1.3rem;
+    left: 500px;
+    position: relative;
+  }
+  i {
+    font-size: 2rem;
+    color: brown;
     cursor: pointer;
-}
-#card-dynamic-head{
-    justify-content: center;
-    font-size: 55px;
-    font-weight: 700;
-    color: red;
+  }
+  .popup-box {
+    border: 1px solid brown;
+    border-radius: 10px;
+    color: brown;
+    width: 75vw;
+    max-width: 350px;
+    z-index: 1;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    padding: 2.5rem;
+    font-size: 20px;
+    box-shadow: 5px 5px 10px rgb(202, 197, 197);
+    background-color: white;
+    position: absolute;
+    top: 35%;
+    left: 35%;
+    animation-duration: 0.4s;
+    animation-name: popupbox;
+    animation-timing-function: ease-in-out;
+  }
+  .task {
+    margin: 0.5rem;
+  }
+  .task-text {
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    font-family: "Times New Roman", Times, serif;
+  }
+  #box-heading{
+    cursor: pointer;
+  }
+  input[type="text"] {
+    border-radius: 5px;
+    width: 70%;
+    max-width: 270px;
+    height: 35px;
+    box-shadow: 5px 3px 10px rgb(202, 197, 197);
+    border: 1px solid brown;
+    display: block;
+    margin: auto;
+  }
+  .popup-box-button {
+    width: 80px;
+    height: 35px;
+    font-size: 20px;
+    background-color: brown;
+    color: white;
+    border: 0px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-block;
+    margin: 1.5vw;
+    box-sizing: border-box;
+    padding: 0.35rem;
+  }
+  .box-1 {
+    padding: 25px 70px;
+    margin: auto;
+  }
+  .hide {
     display: none;
-}
-
-#empty-list{
+  }
+  .add-button {
+    float: right;
     position: relative;
-    top: 10vh;
-    margin-left: 10vw;
-    color: rgb(69, 206, 42);
-    font-size: 45px;
-    font-weight: 800;
-}
-
-@keyframes modalPop {
-    0% { transform: scale(0); };
-    50% { transform: scale(0.5); };
-    100% { transform: scale(1); };
-}
-
-@keyframes cardAnimate {
-    0% { transform: scaleX(0); };
-    100% { transform: scaleX(1) };
-}
-
-@keyframes cardTextAnimate {
-    0% { transform: scaleY(0); };
-    100% { transform: scaleY(1) };
-}
-
-
-
-
-
-#pushpendra{
+    top: 125px;
+    left: 50px;
+  }
+  .hr-1,
+  .hr-2 {
+    width: 150px;
     position: relative;
-    top: 2px;
-    margin-left: 80vw;
-    color:white;
-    font-size: 18px;
-    font-weight: 800;
-}
+  }
+  .hr-1 {
+    right: 200px;
+    top: 80px;
+  }
+  .hr-2 {
+    left: 300px;
+    bottom: 70px;
+  }
+  .container-3 {
+    font-size: 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: 20rem;
+    right: 20rem;
+    top:3rem;
+  }
+  @media (max-width: 480px) {
+    .container-1 {
+      display: grid;
+    }
+    .box {
+      width: 75vw;
+      height: 8vh;
+      margin: 1rem;
+    }
+    .container-2 {
+      justify-content: space-around;
+    }
+    input[type="text"] {
+      width: 60vw;
+    }
+    .hr-1,
+    .hr-2,
+    .back-text,
+    .text-box,
+    .add-text {
+      display: none;
+    }
+    .box-1 {
+      border: 2px solid brown;
+      height: 50vh;
+      width: 50vw;
+      margin: auto;
+      border-radius: 10px;
+      font-size: 25px;
+      text-align: center;
+      position: relative;
+      font-weight: lighter;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      color: brown;
+      box-shadow: 5px 5px 10px rgb(209, 204, 204);
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+    .container-3 {
+      flex-direction: column;
+      position:absolute;
+      left: 2rem;
+      width: 75vw;
+      font-size: 1.4rem;
+    }
+    .back-button {
+      position: relative;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+    .box-1 i {
+      position: relative;
+      right: 2rem;
+      top: 1rem;
+      font-size: 3rem;
+    }
+    .popup-box {
+      left: 5%;
+    }
+  }
+  @keyframes popupbox {
+    from {
+      transform: scale(0);
+    }
+    to {
+      transform: scale(1)
+      }
+    }
